@@ -1,0 +1,7 @@
+CREATE PROCEDURE In_process_order AS
+BEGIN
+SELECT o.customerNumber, c.customerName, c.phone
+FROM classicmodels.orders o, classicmodels.customers c
+WHERE o.customerNumber = c.customerNumber
+AND o.status = 'In Process'
+END 
