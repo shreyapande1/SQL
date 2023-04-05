@@ -1,0 +1,16 @@
+WITH RECURSIVE prereqpdbm(coursenr, pre_req_coursenr, level) AS
+(
+SELECT coursenr, pre_req_coursenr, 1
+FROM pre_requisite
+WHERE coursenr = (SELECT coursenr FROM course WHERE coursename =
+“Principles of Database Management”)
+UNION ALL
+SELECT c.coursenr, c.pre_req_coursenr, p.level+1
+FROM prereqpdbm AS p, pre_requisite AS c
+WHERE p.pre_req_coursenr = c.coursenr)
+SELECT p.coursenr, c1.coursename, p.pre_req_coursenr, c2.coursename, p.level
+FROM prereqpdbm p, course c1, course c2
+WHERE
+p.coursenr = c1.coursenr
+AND p.pre_req_coursenr = c2.coursenr
+ORDER BY p.level
