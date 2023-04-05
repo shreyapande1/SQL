@@ -1,0 +1,7 @@
+CREATE PROCEDURE office_insert
+(@officeCode INT, @city VARCHAR(30))
+AS
+BEGIN
+INSERT INTO classicmodels.offices (officeCode, city)
+VALUES (@officeCode, @city)
+END 
