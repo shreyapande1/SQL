@@ -1,0 +1,6 @@
+SELECT users.city, COUNT(trades.order_id) as total_orders
+FROM users, trades
+WHERE users.user_id = trades.user_id
+GROUP BY trades.user_id, users.city
+ORDER BY total_orders DESC
+LIMIT 3
