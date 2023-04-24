@@ -1,0 +1,4 @@
+SELECT emails.user_id FROM emails, texts
+WHERE texts.signup_action = 'Confirmed' AND 
+EXTRACT(day FROM (texts.action_date - emails.signup_date)) = 1 AND
+emails.email_id = texts.email_id;
